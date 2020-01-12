@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <a class="navbar-brand" href="#">
+        <img src="assets/img/A-64.png" width="30" height="30" alt="">
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <!-- active -->
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['home']">Home</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="auth.loggedIn">
+                <a class="nav-link" [routerLink]="['heroes']">Módulo 1</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="auth.loggedIn">
+                <a class="nav-link" [routerLink]="['about']">Módulo 2</a>
+            </li>
+        </ul>
+
+        <div *ngIf="auth.loggedIn">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Buscar" (keyup.enter)="buscarHeroe(buscarTexto.value)" #buscarTexto>
+                <button (click)="buscarHeroe(buscarTexto.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button" style="margin-right: 20px">Buscar</button>
+            </form>
+        </div>
+
+        <span class="navbar-text">
+        
+            <button *ngIf="!auth.loggedIn"
+                    (click)="auth.login()"
+                    class="btn btn-outline-primary">
+              Ingresar
+            </button>
+  
+            <button *ngIf="auth.loggedIn"
+                    (click)="auth.logout()"
+                    class="btn btn-outline-danger">
+              Salir
+            </button>
+
+        </span>
+
+    </div>
+</nav>
